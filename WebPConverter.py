@@ -106,7 +106,6 @@ class ModernConverterUI:
     def __init__(self, root):
         self.root = root
         self.root.title("WebP Converter Pro")
-        # UPDATED: Decreased height from 550 to 450
         self.root.geometry("700x450")
         self.root.configure(bg=COLORS["bg"])
 
@@ -157,12 +156,12 @@ class ModernConverterUI:
         style.configure("Sub.TLabel", foreground=COLORS["subtext"], font=FONTS["small"])
 
     def _build_layout(self):
-        # 1. TOP HEADER
+        # TOP HEADER
         header_frame = ttk.Frame(self.root)
         header_frame.pack(fill="x", padx=30, pady=(20, 10))
         ttk.Label(header_frame, text="WebP Batch Converter", font=FONTS["header"]).pack(side="left")
 
-        # 2. MAIN CONTENT
+        # MAIN CONTENT
         content_frame = ttk.Frame(self.root)
         content_frame.pack(fill="both", expand=True, padx=30)
 
@@ -315,17 +314,14 @@ class ModernConverterUI:
         popup.configure(bg="white")
         
         mw, mh, mx, my = self.root.winfo_width(), self.root.winfo_height(), self.root.winfo_x(), self.root.winfo_y()
-        # UPDATED: Reduced size to 400x160
         pw, ph = 400, 160
         px, py = mx + (mw - pw) // 2, my + (mh - ph) // 2
         popup.geometry(f"{pw}x{ph}+{px}+{py}")
 
-        # UPDATED: Reduced padding (pady=20 -> pady=(20, 10))
         tk.Label(popup, text=f"{len(conflict_files)} file(s) already exist in output.\nWhat should we do?",
                  bg="white", font=FONTS["body"], justify="center").pack(pady=(20, 10))
 
         btn_frame = tk.Frame(popup, bg="white")
-        # UPDATED: Reduced padding (pady=10 -> pady=5)
         btn_frame.pack(pady=5)
         
         def mk_btn(txt, val, col=COLORS["panel_bg"], txt_col=COLORS["text"]):
@@ -418,4 +414,5 @@ class ModernConverterUI:
 if __name__ == "__main__":
     root = TkinterDnD.Tk()
     app = ModernConverterUI(root)
+
     root.mainloop()
